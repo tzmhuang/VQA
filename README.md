@@ -4,6 +4,12 @@
 
 Visual Question Answering (VQA) is a novel problem that lies at the intersection of the two most exciting fields of modern artificial intelligence and machine learning, namely, Computer Vision (CV) and Natural Language Processing (NLP). Over the past decades, we have seen significant advancements in both CV and NLP. While CV is trying to teach machines how to see, with tasks such as object detection, identification, and image captioning, and NLP trying to teach machines how to read, reason, and converse, VQA is an integration of the tasks from both fields. A VQA system takes an image and a question as inputs and outputs the answer to that question based on the input image. 
 
+![image1](img/image1.png)|
+-|
+*Examples of questions drawn from the VQA dataset.* [5] |
+
+
+
 Both the input image and the question are free of a specific form and are open-ended. In order to answer the questions correctly, the VQR system would have to possess an extensive set of AI abilities. The system would first have to understand the question; for example, understanding questions such as "How many apples are there?" requires a numeric answer while questions like "Is there an apple?" requires a boolean answer. For more straightforward questions such as "what is the color of the house?" the system would have to have the ability to detect objects, and recognize certain activities. Moreover, it would need to reason based on existing knowledge and commonsense to answer questions that ask for information not explicitly presented in the image. Because of the rich set of challenges it poses, VQA is a difficult task that pushes the boundaries of AI research [5]. 
 
 VQA is interesting because it is challenging and because of its close resemblance to human reasoning. After all, a large part of our daily task is to respond to what we see. We make decisions by asking ourselves relevant questions and then answer them using visual information. By solving VQA, we are inherently solving a large set of AI problems, and due to the general nature of VQA, it may be possible to transfer the results from VQA to other AI tasks.
@@ -18,7 +24,7 @@ Agrawal *et al.* [5] created the VQA dataset consisting of real images from the 
 
 Similar to Malinowski *et al.* [2], Agrawal *et al.* [5], implemented a CNN+LSTM multi-model structure for the VQA task. However, instead of concatenating image embeddings and word encodings together as input for the LSTM, and thus having the LSTM prediction dependent on CNN output; this paper proposed a structure that computes CNN and LSTM independently, then fusing them together before passing through a softmax layer to predict the answer. The predicted answers were chosen from a predefined set of 1000 most common answers. 
 
-Shih *et al.* [7] proposed a VQA system for multiple choice questions with a region selection layer, that attempts to teach the system where in the image to look given a certain question. For example, when a question asks "Is it raining?", the model would focus on the umbrellas in the image. This is done by first selecting candidate regions in the image by using top-ranked Edge Boxes [8], then extracting features from each selected region using CNN. The features for each image regions are then merged with the question-answer embedding (produced by a pre-trained Word2Vec model) using dot product before passing through a softmax layer to produce per-region weights. The per-region weights are used to calculate the score of a given question-answer pair. The model is trained and tested using multiple choice questions from the VQA dataset [5], and has demonstrated improved performance in questions that require focusing on particular regions.
+Shih *et al.* [7] proposed a VQA system for multiple choice questions with a region selection layer. It attempts to teach the system where to look in the image given a certain question. For example, when a question asks "Is it raining?", the model would focus on the umbrellas in the image. This is done by first selecting candidate regions in the image by using top-ranked Edge Boxes [8], then extracting features from each selected region using CNN. The features for each image regions are then merged with the question-answer embedding (produced by a pre-trained Word2Vec model) using dot product before passing through a softmax layer to produce per-region weights. The per-region weights are used to calculate the score of a given question-answer pair. The model is trained and tested using multiple choice questions from the VQA dataset [5], and has demonstrated improved performance in questions that require focusing on particular regions.
 
 Building on the concept of image region attention [7], Lu *et al.* [9] proposed a co-attention model that adopted a question attention mechanism alongside image attention. The paper also proposed a hierarchical architecture for question representation with three levels, namely word level, phrase level, and question level. The model was trained and tested using both the VQA dataset [5] and COCO-QA dataset [10].
 
@@ -33,13 +39,35 @@ One immediate application of VQA would be providing assistance to the visually i
 A recent step in using VQA to help the blind was made by Gurari *et al.* [11], who proposed the VizWiz dataset that is dedicated to VQA problems that would arise in daily settings. The questions and answers were collected from blind people, who would take pictures and record questions about the pictures. The existence of the dataset encourages research in adoping VQA to helping the blind, as well as accelerate the development of commercially avilable assistive products for the blind community.
 
 ### 3.2 Medical VQA
-Also, VQA could be used in medical image understanding and question answering. For medical staff who analyses medical images and make diagnoses on a daily basis, a medical VQA system could make the process easier. Unlike other medical CV tasks that is confined to one specific task, medical VQA systems could respond to open-ended questions, making it potentially able to provide a second opinion to medical staff, making diagnoses more accurate and more efficient. 
+Also, VQA could be used in medical image understanding and question answering. For medical staffs who analyses medical images and make diagnoses on a daily basis, a medical VQA system could make the process easier. Unlike other medical CV tasks that is confined to one specific task, medical VQA systems could respond to open-ended questions, making it potentially able to provide a second opinion to medical staffs, making diagnoses more accurate and more efficient. 
 
-Li *et al.* [12] compared and analyzed four transformer-based V+L models trained on radiographs from MIMIC-CXR dataset and the corresponding clinical reports, had found that V+L transformer models outperformed existing CNN-RNN models on diagnosis tasks, and demonstrated that V+L models could highlight regions of interest in the radiographs.
+Li *et al.* [12] compared and analyzed four transformer-based V+L models trained on radiographs from the MIMIC-CXR dataset and corresponding clinical reports. The research had found that V+L transformer models outperformed existing CNN-RNN models on diagnosis tasks, and demonstrated that V+L models could highlight regions of interest in the radiographs, such as areas that demonstrated symptoms listed in the report.
 
 ## 4. Open-source Resources
 
-Most of the codes and datasets are open-sourced by the research community. 
+Most of the codes and datasets are open-sourced by the research community. Some of them are listed below.
+
+### 4.1 Datasets
+
+| Datasets     | Link                                                           |
+| ------------ | -------------------------------------------------------------- |
+| ImageNet [4] | https://www.image-net.org                                      |
+| VQA [5]      | https://visualqa.org                                           |
+| COCO [6]     | https://cocodataset.org                                        |
+| COCO-QA [10] | https://www.cs.toronto.edu/~mren/research/imageqa/data/cocoqa/ |
+| VizWiz [11]  | https://vizwiz.org                                             |
+| VCR [13]     | https://visualcommonsense.com                                  |
+| NLVR [14]    | https://lil.nlp.cornell.edu/nlvr/                              |
+
+### 4.2 Models
+
+| Models            | Link                                                         | Liscence |
+| ----------------- | ------------------------------------------------------------ | -------- |
+| VQA-LSTM-CNN [5]  | https://github.com/GT-Vision-Lab/VQA_LSTM_CNN                | BSD      |
+| HieCoAttenVQA [9] | https://github.com/jiasenlu/HieCoAttenVQA                    | -        |
+| VisualBERT [15]   | https://github.com/uclanlp/visualbert/tree/master/visualbert | MIT      |
+| LXMert [16]       | https://github.com/airsplay/lxmert                           | MIT      |
+
 
 ## 5. References
 
