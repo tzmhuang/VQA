@@ -18,7 +18,7 @@ VQA is interesting because it is challenging and because of its close resemblanc
 
 Early attempts at this problem adopted a probabilistic approach. Malinowski *et al.* [1] proposed a system to answer questions about relations and counts of objects amongst indoor scenes using a bayesian framework. The system was trained on question-answer pairs that are both generated based on predefined templates and collected from human annotators. The results were evaluated using accuracy and a semantic similarity score between generated answer and the ground truth. 
 
-The later attempts of visual question answering utilized a deep learning approach. Malinowski *et al.* [2] proposed a Neural-Image-QA, an end to end question answering model that combines CNN and LSTM. Questions were decomposed into individual words, and then embedded before concatenating with CNN image encodings. The question are being fed into the model word by word together with image encodings at every instance. The model would then predict the answer to the question one word at a time through LSTM until an *\<end\>* token is predicted. The paper adopted GoogleNet [3] as their CNN architecture, and pretrained it using the ImageNet dataset [4].
+The later attempts of visual question answering utilized a deep learning approach. Malinowski *et al.* [2] proposed Neural-Image-QA, an end to end question answering model that combines CNN and LSTM. Questions were decomposed into individual words, and then embedded before concatenating with CNN image encodings. The question are being fed into the model word by word together with image encodings at every instance. The model would then predict the answer to the question one word at a time through LSTM until an *\<end\>* token is predicted. The paper adopted GoogleNet [3] as their CNN architecture, and pretrained it using the ImageNet dataset [4].
 
 Agrawal *et al.* [5] created the VQA dataset consisting of real images from the MS COCO dataset [6], as well as abstract images generated using clipart dolls and backgrounds. The dataset contains both open-ended questions, multiple-choice questions, and corresponding answers, collected from human workers. Furthermore, The paper proposed an accuracy metric, making it easy for automated model evaluation and model comparison. In fact, many following research on VQA utilized the VQA dataset for model training, testing, and benchmarking.
 
@@ -28,7 +28,7 @@ Shih *et al.* [7] proposed a VQA system for multiple choice questions with a reg
 
 Building on the concept of image region attention [7], Lu *et al.* [9] proposed a co-attention model that adopted a question attention mechanism alongside image attention. The paper also proposed a hierarchical architecture for question representation with three levels, namely word level, phrase level, and question level. The model was trained and tested using both the VQA dataset [5] and COCO-QA dataset [10].
 
-Recent developments of VQA systems have become more generalized, with research trying to solve multiple visual and language (V+L) problems, including VQA, VCR [13], and NLVR [14], using recent results from NLP and CV such as transformers [15] [16].
+Recent developments of VQA systems have become more generalized, with research trying to solve multiple visual and language (V+L) problems, including VQA, VCR [13], and NLVR [14] at the same time, using recent results from NLP and CV such as transformers [15] [16].
 
 
 ## 3. Applications
